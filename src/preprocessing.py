@@ -1,6 +1,21 @@
 import pandas as pd
 from typing import List, Optional, Union
 
+def fix_stringified_date_lists(df, column="dates"):
+    """
+    Converts stringified Python lists into real lists.
+    Example:
+      "['12 March 2023', '9 Jan 2023']"
+    becomes:
+      ['12 March 2023', '9 Jan 2023']
+    """
+    import ast
+    df[column] = df[column].apply(
+        lambda x: ast.literal_eval(x) if isinstance(x, str) and x.startswith("[") else x
+    )
+    return df
+
+
 def parse_date_list(date_list: Union[List[str], float]) -> Optional[List[pd.Timestamp]]:
     """
     Convert a list of date strings into a list of pandas Timestamp objects.
