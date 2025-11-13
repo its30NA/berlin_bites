@@ -1,0 +1,31 @@
+# ---- Core Data & ML ----
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+
+# ---- NLP ----
+nltk
+spacy
+transformers
+# torch
+
+# ---- Web Scraping ----
+requests
+beautifulsoup4
+lxml
+
+# ---- Selenium (Edge automation) ----
+selenium
+webdriver-manager
+
+# ---- Proxy / API Scraping ----
+scraperapi-sdk
+
+# ---- App for Deployment ----
+streamlit
+
+# ---- Utility ----
+tqdm
+python-dotenv
