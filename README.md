@@ -81,7 +81,7 @@ Major features will be added in upcoming commits.
 ## 🧑‍💻 Author
 
 **its30NA**  
-*Data Science & AI | Berlin*  
+*Data Scientist based in Berlin, Germany*  
 Feel free to reach out or follow along as the project grows.
 
 ---
