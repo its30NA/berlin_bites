@@ -80,7 +80,7 @@ Major features will be added in upcoming commits.
 
 ## 🧑‍💻 Author
 
-**30NA**  
+**its30NA**  
 *Data Science & AI | Berlin*  
 Feel free to reach out or follow along as the project grows.
 
