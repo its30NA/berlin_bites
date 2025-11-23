@@ -194,3 +194,66 @@ def plot_review_trend(df):
     plt.xlabel("Date")
     plt.ylabel("Reviews per Day")
     plt.show()
+
+import re
+
+def clean_single_review(text: str) -> str:
+    """
+    Clean a single TripAdvisor review text for NLP use:
+      - Remove newlines
+      - Remove TripAdvisor artifacts ('More')
+      - Collapse excessive whitespace
+      - Remove trailing ellipsis-only fragments
+      - Remove leftover HTML tags
+      - Strip leading/trailing whitespace
+    """
+    if not isinstance(text, str):
+        return text
+
+    # Remove newlines
+    text = text.replace("\n", " ")
+
+    # Remove HTML tags (just in case)
+    text = re.sub(r"<[^>]+>", " ", text)
+
+    # Remove TripAdvisor "More" tokens (case-insensitive)
+    text = re.sub(r"\bMore\b", "", text, flags=re.IGNORECASE)
+
+    # Remove repeated dots / trailing ellipsis
+    text = re.sub(r"\.{3,}", ".", text)
+
+    # Collapse multiple whitespace
+    text = re.sub(r"\s+", " ", text)
+
+    return text.strip()
+
+
+def clean_review_list(review_list):
+    """
+    Clean all reviews inside a list for NLP.
+
+    Handles:
+      - NaN values
+      - non-list values
+      - deduplicates reviews
+    """
+    if not isinstance(review_list, list):
+        return review_list
+
+    cleaned = [clean_single_review(r) for r in review_list if isinstance(r, str)]
+
+    # Remove empty reviews
+    cleaned = [r for r in cleaned if r.strip()]
+
+    # Deduplicate while preserving order
+    cleaned = list(dict.fromkeys(cleaned))
+
+    return cleaned
+
+
+def clean_all_reviews(df, column="reviews"):
+    """
+    Apply clean_review_list() to an entire DataFrame column.
+    """
+    df[column] = df[column].apply(clean_review_list)
+    return df
