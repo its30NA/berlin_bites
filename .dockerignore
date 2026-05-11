@@ -1,0 +1,22 @@
+# Ignore git + cache
+.git
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+.venv
+venv
+env
+
+# Ignore local data / models (BIG!)
+data
+models
+outputs
+
+# Notebook clutter
+.ipynb_checkpoints
+
+# OS clutter
+.DS_Store
